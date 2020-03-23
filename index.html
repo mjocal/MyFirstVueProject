@@ -10,16 +10,28 @@
 </head>
 <body>
     <div id="app">
-    <h1>
-        {{title}}
-        <br>
-    <!--  {{other}} -->
-    </h1>
-    <p>{{addText()}}</p>
-    <input type="text" v-on:input="changeTitleName">
-    <p>
-        Click here to check my <a v-bind:href="link">LinkedIn</a> page 
-    </p>
+        <h1 v-once>
+            {{title}}
+            <br>
+        <!--  {{other}} -->
+        </h1>
+        <p>{{title}}</p>
+        <p>{{addText()}}</p>
+        <input type="text" v-on:input="changeTitleName">
+        <p>
+            Click <a v-bind:href="linkedInLink">here</a> to check my LinkedIn page 
+        </p>
+        <p>
+            Click <a v-html="gitHubLink"></a> to check my repo  
+        </p>
+    </div>
+
+    <hr>
+
+    <div id="counter">
+        <button v-on:click="increase">Add click</button>
+        <button v-on:click="reset">Reset</button>
+        <p>Times clicked: {{counter}}</p>
     </div>
 
     <script>
@@ -27,7 +39,8 @@
             el: '#app',
         data: {
             title: 'Hello Invader!!!',
-            link: 'https://www.linkedin.com/in/mar%C3%ADa-jos%C3%A9-calder%C3%B3n-51448050/'
+            linkedInLink: 'https://www.linkedin.com/in/mar%C3%ADa-jos%C3%A9-calder%C3%B3n-51448050/',
+            gitHubLink: '<a href="https://github.com/mjocal">here</a>'
             /* other: 'Hello Papa!' */
         },
         methods: {
@@ -35,11 +48,25 @@
                 this.title = event.target.value
             },
             addText: function() {
-                return 'Try changing the title'
+                return 'Try changing the both titles'
             }
         }
         })
 
+        new Vue ({
+            el:'#counter',
+            data: {
+                counter: 0
+            },
+            methods: {
+                increase: function() {
+                    this.counter ++
+                },
+                reset: function() {
+                    this.counter = 0
+                }
+            }
+        })
     </script>
 </body>
 </html>
