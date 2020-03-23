@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
+    <title>MyFirstVueProject</title>
+</head>
+<body>
+    <div id="app">
+    <h1>
+        {{title}}
+        <br>
+    <!--  {{other}} -->
+    </h1>
+    <p>{{addText()}}</p>
+    <input type="text" v-on:input="changeTitleName">
+    </div>
+
+    <script>
+        new Vue ({
+            el: '#app',
+        data: {
+            title: 'Hello Nico!!!',
+            /* other: 'Hello Papa!' */
+        },
+        methods: {
+            changeTitleName: function() {
+                this.title = event.target.value
+            },
+            addText: function() {
+                return 'Try changing the title'
+            }
+        }
+        })
+
+    </script>
+</body>
+</html>
