@@ -17,13 +17,17 @@
     </h1>
     <p>{{addText()}}</p>
     <input type="text" v-on:input="changeTitleName">
+    <p>
+        Click here to check my <a v-bind:href="link">LinkedIn</a> page 
+    </p>
     </div>
 
     <script>
         new Vue ({
             el: '#app',
         data: {
-            title: 'Hello Nico!!!',
+            title: 'Hello Invader!!!',
+            link: 'https://www.linkedin.com/in/mar%C3%ADa-jos%C3%A9-calder%C3%B3n-51448050/'
             /* other: 'Hello Papa!' */
         },
         methods: {
