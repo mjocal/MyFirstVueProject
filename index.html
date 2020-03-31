@@ -1,72 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="vue.js"></script>
     <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
     <title>MyFirstVueProject</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="app">
-        <h1 v-once>
-            {{title}}
-            <br>
-        <!--  {{other}} -->
-        </h1>
-        <p>{{title}}</p>
-        <p>{{addText()}}</p>
-        <input type="text" v-on:input="changeTitleName">
-        <p>
-            Click <a v-bind:href="linkedInLink">here</a> to check my LinkedIn page 
-        </p>
-        <p>
-            Click <a v-html="gitHubLink"></a> to check my repo  
-        </p>
+      <h1 v-once>
+        {{title}}
+        <br />
+      </h1>
+      <p>{{addText()}}</p>
+      <input type="text" v-on:input="changeTitleName" />
+      <input type="text" v-model="title" />
+      <h2>{{title}}</h2>
+      <p>
+        Click <a v-bind:href="linkedInLink">here</a> to check my LinkedIn page
+      </p>
+      <p>Click <a v-html="gitHubLink"></a> to check my repo</p>
     </div>
 
-    <hr>
+    <hr />
 
     <div id="counter">
-        <button v-on:click="increase">Add click</button>
-        <button v-on:click="reset">Reset</button>
-        <p>Times clicked: {{counter}}</p>
+      <button v-on:click="increase">Add click</button>
+      <button v-on:click="reset">Reset</button>
+      <p>Times clicked: {{counter}}</p>
+      <p v-on:mousemove="updateCoordinates">
+        Hover the mouse here: {{ x }} / {{ y }} - <span v-on:mousemove.stop="">DEAD SPOT</span>
+      </p>
     </div>
 
     <script>
-        new Vue ({
-            el: '#app',
+      new Vue({
+        el: "#app",
         data: {
-            title: 'Hello Invader!!!',
-            linkedInLink: 'https://www.linkedin.com/in/mar%C3%ADa-jos%C3%A9-calder%C3%B3n-51448050/',
-            gitHubLink: '<a href="https://github.com/mjocal">here</a>'
-            /* other: 'Hello Papa!' */
+          title: "Hello Invader!!!",
+          linkedInLink:
+            "https://www.linkedin.com/in/mar%C3%ADa-jos%C3%A9-calder%C3%B3n-51448050/",
+          gitHubLink: '<a href="https://github.com/mjocal">here</a>'
+          /* other: 'Hello Papa!' */
         },
         methods: {
-            changeTitleName: function() {
-                this.title = event.target.value
-            },
-            addText: function() {
-                return 'Try changing the both titles'
-            }
+          changeTitleName: function() {
+            this.title = event.target.value;
+          },
+          addText: function() {
+            return "Try changing both titles";
+          }
         }
-        })
+      });
 
-        new Vue ({
-            el:'#counter',
-            data: {
-                counter: 0
-            },
-            methods: {
-                increase: function() {
-                    this.counter ++
-                },
-                reset: function() {
-                    this.counter = 0
-                }
-            }
-        })
+      new Vue({
+        el: "#counter",
+        data: {
+          counter: 0,
+          x: 0,
+          y: 0
+        },
+        methods: {
+          increase: function() {
+            this.counter++;
+          },
+          reset: function() {
+            this.counter = 0;
+          },
+          updateCoordinates: function(event) {
+            (this.x = event.clientX), (this.y = event.clientY);
+          }
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
